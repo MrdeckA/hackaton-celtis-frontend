@@ -49,8 +49,12 @@
       </template>
     </v-app-bar>
 
-    <v-main> </v-main
-  ></v-layout>
+    <v-main>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo officia
+      praesentium accusamus minima ducimus at ipsum est dolorum quia, iusto non
+      et dolor quod optio doloribus debitis sequi aliquam possimus?</v-main
+    ></v-layout
+  >
 </template>
 <script setup>
 /* eslint-disable */
