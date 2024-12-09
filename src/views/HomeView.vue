@@ -25,7 +25,7 @@
       </v-col>
 
       <v-col cols="12" class="mt-14">
-        <span style="font-size: medium" class="mr-2">Passer</span>
+        <span style="font-size: medium" class="mr-2">Continuer</span>
         <v-btn
           to="/OnboardingStepOne"
           variant="flat"

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import OnboardingStepOne from "../views/Onboarding/StepOne.vue";
 import OnboardingStepTwo from "../views/Onboarding/StepTwo.vue";
+import UserHome from "../views/User/UserHome.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/OnboardingStepTwo",
     name: "OnboardingStepTwo",
     component: OnboardingStepTwo,
+  },
+  {
+    path: "/UserHome",
+    name: "UserHome",
+    component: UserHome,
   },
   {
     path: "/about",
