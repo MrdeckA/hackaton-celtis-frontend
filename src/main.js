@@ -1,12 +1,16 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import "@mdi/font/css/materialdesignicons.css";
-
+export const PINIA_STORE_BASE_KEY = "__tontiis___";
+import { createPersistedState } from "pinia-plugin-persistedstate";
 // Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { createPinia } from "pinia";
+
+const app = createApp(App);
 
 const light = {
   dark: false,
@@ -39,4 +43,12 @@ const vuetify = createVuetify({
   },
 });
 
-createApp(App).use(vuetify).mount("#app");
+const pinia = createPinia();
+pinia.use(
+  createPersistedState({
+    key: (storeId) => `${PINIA_STORE_BASE_KEY}${storeId}`,
+    auto: true,
+  })
+);
+
+app.use(vuetify).use(pinia).mount("#app");
