@@ -9,8 +9,9 @@ import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import { createPinia } from "pinia";
+import router from "./router";
 
-const app = createApp(App);
+const app = createApp(App).use(router);
 
 const light = {
   dark: false,
@@ -21,9 +22,9 @@ const light = {
     "surface-light": "#EEEEEE",
     "surface-variant": "#424242",
     "on-surface-variant": "#EEEEEE",
-    primary: "#1f3b71",
+    primary: "#1f3b71", // bleu nuit
     "primary-darken-1": "#1F5592",
-    secondary: "#93c01f ",
+    secondary: "#93c01f ", // vert
     "secondary-darken-1": "#018786",
     error: "#B00020",
     info: "#2196F3",
