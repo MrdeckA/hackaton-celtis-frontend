@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import "@mdi/font/css/materialdesignicons.css";
-export const PINIA_STORE_BASE_KEY = "__tontiis___";
+const PINIA_STORE_BASE_KEY = "__tontiis___";
 import { createPersistedState } from "pinia-plugin-persistedstate";
 // Vuetify
 import "vuetify/styles";
@@ -11,7 +11,7 @@ import * as directives from "vuetify/directives";
 import { createPinia } from "pinia";
 import router from "./router";
 
-const app = createApp(App).use(router);
+const app = createApp(App);
 
 const light = {
   dark: false,
@@ -52,4 +52,4 @@ pinia.use(
   })
 );
 
-app.use(vuetify).use(pinia).mount("#app");
+app.use(vuetify).use(pinia).use(router).mount("#app");

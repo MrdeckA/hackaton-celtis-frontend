@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import OnboardingStepOne from "../views/Onboarding/StepOne.vue";
-import OnboardingStepTwo from "../views/Onboarding/StepTwo.vue";
-import UserHome from "../views/User/UserHome.vue";
+// import OnboardingStepOne from "../views/Onboarding/StepOne.vue";
+// import OnboardingStepTwo from "../views/Onboarding/StepTwo.vue";
+import UserHome from "../views/user/UserHome.vue";
 
 const routes = [
   {
@@ -10,27 +10,25 @@ const routes = [
     name: "HomeView",
     component: HomeView,
   },
+  // {
+  //   path: "/OnboardingStepOne",
+  //   name: "OnboardingStepOne",
+  //   component: OnboardingStepOne,
+  // },
+  // {
+  //   path: "/OnboardingStepTwo",
+  //   name: "OnboardingStepTwo",
+  //   component: OnboardingStepTwo,
+  // },
   {
-    path: "/OnboardingStepOne",
-    name: "OnboardingStepOne",
-    component: OnboardingStepOne,
-  },
-  {
-    path: "/OnboardingStepTwo",
-    name: "OnboardingStepTwo",
-    component: OnboardingStepTwo,
-  },
-  {
-    path: "/UserHome",
-    name: "UserHome",
+    path: "/user/home",
+    name: "UserHomeView",
     component: UserHome,
   },
   {
     path: "/about",
     name: "about",
-
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    component: () => import("../views/AboutView.vue"),
   },
 ];
 

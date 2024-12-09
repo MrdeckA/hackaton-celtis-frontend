@@ -2,7 +2,11 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <img src="../assets//logo.png" alt="logo" width="200em" />
+        <img
+          src="../assets/android-chrome-512x512.png"
+          alt="logo"
+          width="200em"
+        />
       </v-col>
       <v-col cols="12" class="">
         <h1>Bienvenue sur Tontiis Cash</h1>
@@ -27,7 +31,7 @@
       <v-col cols="12" class="mt-14">
         <span style="font-size: medium" class="mr-2">Continuer</span>
         <v-btn
-          to="/OnboardingStepOne"
+          to="/user/home"
           variant="flat"
           color="primary"
           icon="mdi-arrow-right"
