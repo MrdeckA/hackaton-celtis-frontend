@@ -1,7 +1,11 @@
 <template>
-  <div></div>
+  <v-container>
+    <v-row>
+      <v-col>Bienvenue sur Tontiis</v-col>
+    </v-row>
+  </v-container>
 </template>
 
-<script setup lang="ts"></script>
+<script setup></script>
 
 <style scoped></style>
