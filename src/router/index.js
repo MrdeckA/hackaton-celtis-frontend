@@ -6,6 +6,7 @@ import UserHome from "../views/user/UserHome.vue";
 import UserPlanView from "../views/user/PlanView.vue";
 import UserTontinesView from "../views/user/TontinesView.vue";
 import UserAccountView from "../views/user/AccountView.vue";
+import UserNotificationView from "../views/user/NotificationView.vue";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: "/user/home",
     name: "UserHomeView",
     component: UserHome,
+  },
+  {
+    path: "/user/notifications",
+    name: "UserNotificationsView",
+    component: UserNotificationView,
   },
   {
     path: "/user/plans",
