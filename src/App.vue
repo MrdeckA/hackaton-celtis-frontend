@@ -59,7 +59,6 @@ import { useRouter } from "vue-router";
 
 import useSettingStore from "@/store/setting";
 import { storeToRefs } from "pinia";
-console.log("ggggggggggggggggg");
 
 const settingStore = useSettingStore();
 
@@ -68,7 +67,7 @@ const { showHome } = storeToRefs(settingStore);
 const router = useRouter();
 
 function onBtnClick() {
-  showHome.value = false;
+  settingStore.updateShowHome(false);
   return router.push("/user/home");
 }
 </script>

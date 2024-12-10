@@ -24,7 +24,7 @@ const light = {
     "on-surface-variant": "#EEEEEE",
     primary: "#1f3b71", // bleu nuit
     "primary-darken-1": "#1F5592",
-    secondary: "#93c01f ", // vert
+    secondary: "#93c01f", // vert
     "secondary-darken-1": "#018786",
     error: "#B00020",
     info: "#2196F3",
