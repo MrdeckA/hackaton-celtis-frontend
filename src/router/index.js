@@ -3,6 +3,9 @@ import HomeView from "../views/HomeView.vue";
 // import OnboardingStepOne from "../views/Onboarding/StepOne.vue";
 // import OnboardingStepTwo from "../views/Onboarding/StepTwo.vue";
 import UserHome from "../views/user/UserHome.vue";
+import UserPlanView from "../views/user/PlanView.vue";
+import UserTontinesView from "../views/user/TontinesView.vue";
+import UserAccountView from "../views/user/AccountView.vue";
 
 const routes = [
   {
@@ -24,6 +27,21 @@ const routes = [
     path: "/user/home",
     name: "UserHomeView",
     component: UserHome,
+  },
+  {
+    path: "/user/plans",
+    name: "UserPlanView",
+    component: UserPlanView,
+  },
+  {
+    path: "/user/tontines",
+    name: "UserTontinesView",
+    component: UserTontinesView,
+  },
+  {
+    path: "/user/account",
+    name: "UserAccountView",
+    component: UserAccountView,
   },
   {
     path: "/about",

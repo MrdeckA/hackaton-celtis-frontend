@@ -1,15 +1,22 @@
 <template>
   <v-layout>
-    <v-navigation-drawer width="250" v-model="drawer" class="bg-primary">
-      <v-list>
+    <v-navigation-drawer
+      width="300"
+      v-model="drawer"
+      style="background-color: whitesmoke; padding: 0"
+    >
+      <v-list class="border">
         <v-list-item>
           <a href="/dashboard" :style="{ 'text-decoration': 'none' }">
             <div
               class="text-center cursor-pointer my-app-title text-h5 text-uppercase text-white"
             >
-              ChainMaster
-            </div></a
-          >
+              <img
+                src="../../assets/android-chrome-512x512.png"
+                width="200em"
+                alt=""
+              /></div
+          ></a>
         </v-list-item>
       </v-list>
 
@@ -32,28 +39,64 @@
         icon="mdi-arrow-left"
       ></v-app-bar-nav-icon>
 
-      <v-app-bar-nav-icon v-else @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>Acceuil</v-app-bar-title>
-
+      <!-- <v-app-bar-nav-icon v-else @click="drawer = !drawer"></v-app-bar-nav-icon> -->
       <v-avatar
+        v-else
+        to="/profile"
+        color="primary"
+        class="ms-2 cursor-pointer"
+        @click="router.push('/profile')"
+        >{{ logolify("Mériadeck AMOUSSOU") }}</v-avatar
+      >
+
+      <!-- <v-app-bar-title>Acceuil</v-app-bar-title> -->
+      <v-app-bar-title
+        ><img src="../../assets/android-chrome-512x512.png" width="80em" alt=""
+      /></v-app-bar-title>
+
+      <!-- <v-avatar
         to="/profile"
         color="primary"
         class="me-5 cursor-pointer"
         @click="router.push('/profile')"
         >{{ logolify("Mériadeck AMOUSSOU") }}</v-avatar
-      >
+      > -->
 
       <template #append>
-        <v-btn icon><v-icon size="35">mdi-power</v-icon></v-btn>
+        <v-btn to="/user/notifications" icon
+          ><v-icon size="30">mdi-bell</v-icon></v-btn
+        >
       </template>
     </v-app-bar>
 
     <v-main>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo officia
       praesentium accusamus minima ducimus at ipsum est dolorum quia, iusto non
-      et dolor quod optio doloribus debitis sequi aliquam possimus?</v-main
-    ></v-layout
+      et dolor quod optio doloribus debitis sequi aliquam possimus?* </v-main
+    ><v-bottom-navigation v-model="value" color="primary" active grow>
+      <v-btn to="/user/home">
+        <v-icon>mdi-home</v-icon>
+
+        Accueil
+      </v-btn>
+
+      <v-btn to="/user/plans">
+        <v-icon>mdi-view-list</v-icon>
+
+        Plans
+      </v-btn>
+      <v-btn to="/user/tontines">
+        <v-icon>mdi-history</v-icon>
+
+        Mes tontines
+      </v-btn>
+
+      <v-btn to="/user/account">
+        <v-icon>mdi-account-circle</v-icon>
+
+        <span>Compte</span>
+      </v-btn>
+    </v-bottom-navigation></v-layout
   >
 </template>
 <script setup>

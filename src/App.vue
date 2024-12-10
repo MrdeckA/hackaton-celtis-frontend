@@ -8,7 +8,7 @@
   <!-- <HomeView /> -->
 
   <v-container v-if="showHome">
-    <v-row>
+    <v-row class="mt-10">
       <v-col cols="12">
         <img
           src="./assets/android-chrome-512x512.png"
@@ -20,7 +20,7 @@
         <h1>Bienvenue sur Tontiis Cash</h1>
       </v-col>
 
-      <v-col cols="12" class="text-left"
+      <v-col cols="12" class="text-center"
         >Votre application poour intégrer et gérer vos
         <div
           class="text-center mx-auto"
@@ -56,9 +56,14 @@ import UserHome from "@/views/user/UserHome.vue";
 import HomeView from "@/views/HomeView.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+
+import useSettingStore from "@/store/setting";
+import { storeToRefs } from "pinia";
 console.log("ggggggggggggggggg");
 
-const showHome = ref(true);
+const settingStore = useSettingStore();
+
+const { showHome } = storeToRefs(settingStore);
 
 const router = useRouter();
 
