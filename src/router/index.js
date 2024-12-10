@@ -36,6 +36,22 @@ const routes = [
   },
 
   {
+    path: "/user/tontines/create",
+    name: "UserCreateTontine",
+    component: () => import("../views/user/tontines/TontineAdd.vue"),
+  },
+  {
+    path: "/details/:id",
+    name: "UserDetailsView",
+    component: () => import("../views/user/details.vue"),
+  },
+  {
+    path: "/user/tontines/:id",
+    name: "TontineDetailsView",
+    component: () => import("../views/user/tontines/TontineDetailView.vue"),
+  },
+
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
