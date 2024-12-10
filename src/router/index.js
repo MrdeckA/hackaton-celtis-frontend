@@ -13,6 +13,12 @@ const routes = [
     name: "UserHomeView",
     component: () => import("../views/user/UserHome.vue"),
   },
+
+  {
+    path: "/user/notifications",
+    name: "UserNotificationsView",
+    component: () => import("../views/user/NotificationView.vue"),
+  },
   {
     path: "/about",
     name: "about",
