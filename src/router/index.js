@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 // import OnboardingStepOne from "../views/Onboarding/StepOne.vue";
 // import OnboardingStepTwo from "../views/Onboarding/StepTwo.vue";
-import UserHome from "../views/user/UserHome.vue";
+import UserHome from "./../views/User/UserHome.vue";
 
 const routes = [
   {
@@ -29,6 +29,11 @@ const routes = [
     path: "/about",
     name: "about",
     component: () => import("../views/AboutView.vue"),
+  },
+  {
+    path: "/details/:id",
+    name: "about",
+    component: () => import("../views/User/details.vue"),
   },
 ];
 

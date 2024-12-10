@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import UserHome from "@/views/user/UserHome.vue";
+import UserHome from "./views/User/UserHome.vue";
 import HomeView from "@/views/HomeView.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
