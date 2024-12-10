@@ -43,11 +43,6 @@ const vuetify = createVuetify({
 });
 
 const pinia = createPinia();
-pinia.use(
-  createPersistedState({
-    key: (storeId) => `${PINIA_STORE_BASE_KEY}${storeId}`,
-    auto: true,
-  })
-);
+pinia.use(createPersistedState());
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).use(vuetify).use(pinia).mount("#app");
