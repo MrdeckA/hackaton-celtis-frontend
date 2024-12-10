@@ -7,6 +7,7 @@ import UserPlanView from "../views/user/PlanView.vue";
 import UserTontinesView from "../views/user/TontinesView.vue";
 import UserAccountView from "../views/user/AccountView.vue";
 import UserNotificationView from "../views/user/NotificationView.vue";
+import UserDetailsView from "../views/user/details.vue";
 
 const routes = [
   {
@@ -53,6 +54,11 @@ const routes = [
     path: "/about",
     name: "about",
     component: () => import("../views/AboutView.vue"),
+  },
+  {
+    path: "/details/:id",
+    name: "UserDetailsView",
+    component: () => import("../views/user/details.vue"),
   },
 ];
 
