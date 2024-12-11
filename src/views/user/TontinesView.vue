@@ -4,7 +4,7 @@
       <!-- Titre principal -->
       <v-row justify="center" class="mb-">
         <v-col cols="12" class="text-center">
-          <h1 class="text-h4 font-weight-bold text-primary">Mes Tontines</h1>
+          <h1 class="text-h5 font-weight-bold text-primary">Mes Tontines</h1>
           <p class="text-subtitle-1 text-secondary">
             Retrouvez toutes les tontines auxquelles vous participez.
           </p>

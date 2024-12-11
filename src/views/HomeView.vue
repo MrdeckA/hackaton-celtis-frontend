@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="mt-14">
       <v-col cols="12">
         <img
           src="../assets/android-chrome-512x512.png"
@@ -8,11 +8,11 @@
           width="200em"
         />
       </v-col>
-      <v-col cols="12" class="">
+      <v-col cols="12">
         <h1>Bienvenue sur Tontiis Cash</h1>
       </v-col>
 
-      <v-col cols="12" class="text-left"
+      <v-col cols="12" class="text-center"
         >Votre application poour intégrer et gérer vos
         <div
           class="text-center mx-auto"

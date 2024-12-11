@@ -25,6 +25,11 @@ const routes = [
     component: () => import("../views/user/PlanView.vue"),
   },
   {
+    path: "/user/plans/:id",
+    name: "UserPlanDetailView",
+    component: () => import("../views/user/details.vue"),
+  },
+  {
     path: "/user/tontines",
     name: "UserTontinesView",
     component: () => import("../views/user/TontinesView.vue"),
@@ -65,7 +70,7 @@ const routes = [
     path: "/user/home",
     name: "UserHomeView",
     component: () => import("../views/UserHome.vue"),
-  }, 
+  },
   {
     path: "/test",
     name: "test",

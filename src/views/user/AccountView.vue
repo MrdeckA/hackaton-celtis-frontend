@@ -37,7 +37,10 @@
       </v-sheet>
 
       <!-- Actions secondaires -->
-      <v-sheet class="mt-4 mx-4 px-2 py-3 elevation-3 rounded-lg">
+      <v-sheet
+        class="mt-4 mx-4 px-2 py-3 elevation-0 rounded-lg"
+        style="background-color: whitesmoke"
+      >
         <v-btn block color="red-darken-2" class="py-2" @click="logout">
           <v-icon left>mdi-logout</v-icon>Déconnexion
         </v-btn>

@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout transition="scroll-x-transition">
     <!-- <v-navigation-drawer
       width="300"
       v-model="drawer"
@@ -32,7 +32,7 @@
       </v-list>
     </v-navigation-drawer> -->
 
-    <v-app-bar>
+    <v-app-bar transition="scroll-x-transition">
       <v-app-bar-nav-icon
         v-if="hasGoBackIcon"
         @click="router.back()"
@@ -70,7 +70,13 @@
     </v-app-bar>
 
     <v-main><slot></slot></v-main
-    ><v-bottom-navigation v-model="value" color="primary" active grow>
+    ><v-bottom-navigation
+      height="70"
+      v-model="value"
+      color="primary"
+      active
+      grow
+    >
       <v-btn to="/user/home">
         <v-icon>mdi-home</v-icon>
 
