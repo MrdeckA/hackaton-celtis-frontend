@@ -6,20 +6,20 @@
           <v-card class="rounded-lg overflow-hidden">
             <!-- Card Header -->
             <v-img
-              :src="packDetails.icon"
+              :src="plan.icon"
               aspect-ratio="2"
               class="primary--text bg-primary d-flex align-center justify-center text-center"
               style="padding: 20px; color: white"
             >
-              <v-icon :color="packDetails.color" size="56" class="me-3">
-                {{ packDetails.icon }}
+              <v-icon :color="plan.color" size="56" class="me-3">
+                {{ plan.icon }}
               </v-icon>
               <div>
                 <h1 class="text-h4 font-weight-bold mb-1">
-                  {{ packDetails.title }}
+                  {{ plan.title }}
                 </h1>
                 <p class="text-subtitle-2 font-italic">
-                  {{ packDetails.subtitle }}
+                  {{ plan.subtitle }}
                 </p>
               </div>
             </v-img>
@@ -33,7 +33,7 @@
                 <v-col cols="12">
                   <v-btn
                     color="primary"
-                    to="/user/tontines/create"
+                    :to="'/user/tontines/create?plan=' + id"
                     variant="flat"
                     >Rejoindre</v-btn
                   >
@@ -47,7 +47,7 @@
                       </v-list-item-icon>
                       <v-list-item-content>
                         <strong>Montant :</strong>
-                        {{ packDetails.details.amountRange }}
+                        {{ plan.details?.amountRange }}
                       </v-list-item-content>
                     </v-list-item>
 
@@ -57,7 +57,7 @@
                       </v-list-item-icon>
                       <v-list-item-content>
                         <strong>Durée :</strong>
-                        {{ packDetails.details.duration }}
+                        {{ plan.details?.duration }}
                       </v-list-item-content>
                     </v-list-item>
 
@@ -67,7 +67,7 @@
                       </v-list-item-icon>
                       <v-list-item-content>
                         <strong>Fréquence :</strong>
-                        {{ packDetails.details.frequency }}
+                        {{ plan.details?.frequency }}
                       </v-list-item-content>
                     </v-list-item>
 
@@ -79,7 +79,7 @@
                       </v-list-item-icon>
                       <v-list-item-content>
                         <strong>Participants :</strong>
-                        {{ packDetails.details.participants }}
+                        {{ plan.details?.participants }}
                       </v-list-item-content>
                     </v-list-item>
 
@@ -89,7 +89,7 @@
                       </v-list-item-icon>
                       <v-list-item-content>
                         <strong>Cycle de paiement :</strong>
-                        {{ packDetails.details.payoutCycle }}
+                        {{ plan.details?.payoutCycle }}
                       </v-list-item-content>
                     </v-list-item>
 
@@ -101,8 +101,8 @@
                         <strong>Fonctionnalités principales :</strong>
                         <ul class="pl-4">
                           <li
-                            v-for="(feature, index) in packDetails.details
-                              .keyFeatures"
+                            v-for="(feature, index) in plan.details
+                              ?.keyFeatures"
                             :key="index"
                           >
                             {{ feature }}
@@ -122,7 +122,7 @@
             <!-- Card Actions -->
             <v-card-actions class="justify-center">
               <v-btn
-                to="/user/tontines/create"
+                :to="'/user/tontines/create?plan=' + id"
                 color="primary"
                 dark
                 rounded
@@ -140,33 +140,14 @@
 
 <script>
 import BackNavigation from "@/components/BackNavigation.vue";
+import { ref } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
-  name: "PackDetails",
+  name: "plan",
   components: { BackNavigation },
   data() {
-    return {
-      packDetails: {
-        title: "Pack Communautaire",
-        icon: "mdi-account-group",
-        color: "green",
-        subtitle:
-          "Unissez vos forces pour financer des projets communautaires comme des écoles, centres de santé, ou autres initiatives locales.",
-        details: {
-          amountRange: "10,000 - 200,000 FCFA",
-          duration: "6 à 12 mois",
-          frequency: "Mensuelle",
-          participants: "10 à 50 membres",
-          payoutCycle: "À la fin de chaque mois",
-          keyFeatures: [
-            "Gestion transparente avec accès partagé aux rapports",
-            "Possibilité de définir des objectifs collectifs",
-            "Caisse commune pour des urgences ou des projets solidaires",
-            "Assistance pour rédiger des projets et attirer des financements extérieurs",
-          ],
-        },
-      },
-    };
+    return {};
   },
   methods: {
     joinTontine() {
@@ -174,6 +155,26 @@ export default {
     },
   },
 };
+</script>
+
+<script setup>
+import { api } from "@/api";
+
+const plan = ref({});
+
+const route = useRoute();
+
+const { id } = route.params;
+
+api
+  .get("/plans/" + id)
+  .then((response) => {
+    console.log(response.data);
+    plan.value = response.data;
+  })
+  .catch((error) => {
+    console.error("Erreur lors de la récupération des plans:", error);
+  });
 </script>
 
 <style scoped>

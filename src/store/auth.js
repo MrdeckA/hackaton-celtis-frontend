@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export default defineStore("auth", () => {
-  const authenticationToken = (ref < string) | (undefined > undefined);
+  const authenticationToken = ref(undefined);
 
   const authenticatedUser = ref(undefined);
 

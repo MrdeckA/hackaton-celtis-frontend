@@ -15,6 +15,21 @@ const routes = [
   },
 
   {
+    path: "/user/history",
+    name: "AccountHistory",
+    component: () => import("../views/user/account/HistoryView.vue"),
+  },
+  {
+    path: "/user/profile",
+    name: "AccountProfile",
+    component: () => import("../views/user/account/ProfileView.vue"),
+  },
+  {
+    path: "/user/password",
+    name: "AccountPasword",
+    component: () => import("../views/user/account/PasswordView.vue"),
+  },
+  {
     path: "/user/notifications",
     name: "UserNotificationsView",
     component: () => import("../views/user/NotificationView.vue"),

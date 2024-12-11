@@ -28,6 +28,7 @@
             @click="option.action"
             color="primary"
             :prepend-icon="option.icon"
+            :to="option.to"
           >
             <template #title>
               <div class="text-left">{{ option.title }}</div>
@@ -41,8 +42,8 @@
         class="mt-4 mx-4 px-2 py-3 elevation-0 rounded-lg"
         style="background-color: whitesmoke"
       >
-        <v-btn block color="red-darken-2" class="py-2" @click="logout">
-          <v-icon left>mdi-logout</v-icon>Déconnexion
+        <v-btn to="/" block color="red-darken-2" class="py-2" @click="logout">
+          <v-icon class="mr-2" left>mdi-logout</v-icon>Quitter
         </v-btn>
       </v-sheet>
     </v-container></Navigation
@@ -54,9 +55,13 @@ import { storeToRefs } from "pinia";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import Navigation from "@/components/Navigation.vue";
+import useAuthStore from "@/store/auth";
 
 const drawer = ref(false);
 const router = useRouter();
+
+const authStore = useAuthStore();
+const { authenticatedUser, authenticationToken } = storeToRefs(authStore);
 
 const currentPageTitle = ref("Dashboard");
 
@@ -93,18 +98,31 @@ const accountOptions = [
   {
     title: "Historique de mes transactions",
     icon: "mdi-history",
+    to: "/user/history",
     action: () => console.log("Edit Profile"),
   },
   {
     title: "Modifier le profil",
     icon: "mdi-account-edit",
     action: () => console.log("Edit Profile"),
+    to: "/user/profile",
+    action: () => console.log("Edit Profile"),
   },
+  // {
+  //   title: "Modifier le profil",
+  //   icon: "mdi-account-edit",
+  // },
   {
     title: "Changer de mot de passe",
     icon: "mdi-lock-reset",
     action: () => console.log("Reset Password"),
+    to: "/user/password",
+    action: () => console.log("Edit Profile"),
   },
+  // {
+  //   title: "Modifier le profil",
+  //   icon: "mdi-account-edit",
+  // },
   // {
   //   title: "Préférences de notification",
   //   icon: "mdi-bell-ring-outline",
