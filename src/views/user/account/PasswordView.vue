@@ -3,7 +3,7 @@
     <v-row no-gutters justify="center" class="my-5">
       <v-col cols="12" md="6">
         <!-- Card for Change Password -->
-        <v-card class="elevation-2">
+        <v-card class="elevation-0">
           <v-card-title class="my-4">
             <v-icon left>mdi-lock-outline</v-icon>
             Modifier le mot de passe
