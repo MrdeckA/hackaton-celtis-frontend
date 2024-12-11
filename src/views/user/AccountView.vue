@@ -96,11 +96,18 @@ const user = reactive({
 // Simulated Options
 const accountOptions = [
   {
+    title: "Portefeuile",
+    icon: "mdi-home",
+    to: "/user/wallet",
+    action: () => console.log("Edit Profile"),
+  },
+  {
     title: "Historique de mes transactions",
     icon: "mdi-history",
     to: "/user/history",
     action: () => console.log("Edit Profile"),
   },
+
   {
     title: "Modifier le profil",
     icon: "mdi-account-edit",

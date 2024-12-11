@@ -1,210 +1,191 @@
 <template>
   <Navigation>
-    <v-container class="py-10 scrollable">
-      <!-- Titre principal -->
-      <v-row justify="center" class="mb-5">
-        <v-col cols="12" class="text-center">
-          <h2 class="text-h4 font-weight-bold">Nos plans de tontine</h2>
-        </v-col>
-      </v-row>
-      <!-- Cartes -->
-      <v-row justify="center" align="center" dense>
-        <!-- Carte 1 : Machines agricoles -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" :to="`/details/1`" outlined>
-            <v-card-title>
-              <v-icon size="48" color="green">mdi-tractor</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em">Machines Agricoles</v-card-text>
-            <v-card-subtitle>
-              Découvrez nos machines agricoles modernes et efficaces pour vos
-              exploitations.
-            </v-card-subtitle>
-            <!-- <v-card-actions>
+    <v-row class="mb-6" no-gutters justify="space-around">
+      <v-col v-for="(stat, index) in stats" :key="index" cols="12" md="4">
+        <v-card class="rounded-xl">
+          <v-card-title class="d-flex align-center justify-space-between">
+            <v-icon :color="stat.iconColor" size="48">{{ stat.icon }}</v-icon>
+            <v-avatar size="60" class="ml-auto">
+              <v-img :src="stat.image" alt="Stat icon"></v-img>
+            </v-avatar>
+          </v-card-title>
+          <v-card-subtitle
+            class="headline text-center"
+            :style="{ color: stat.textColor }"
+          >
+            {{ stat.value }}
+          </v-card-subtitle>
+          <v-card-text class="text-center" :style="{ color: stat.textColor }">
+            {{ stat.description }}
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Title -->
+    <v-row justify="center" class="mb-4">
+      <v-col cols="12" md="8">
+        <v-card class="rounded-xl">
+          <v-card-title class="headline text-center">
+            <span class="text-h5 font-weight-bold"
+              >Liste des Packs de Tontine</span
+            >
+          </v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Data Table -->
+    <v-row>
+      <v-col cols="12">
+        <v-card class="rounded-xl">
+          <v-card-text>
+            <!-- Search Field -->
+            <v-text-field
+              v-model="search"
+              label="Rechercher un pack"
+              prepend-icon="mdi-magnify"
+              class="mb-6"
+              outlined
+            ></v-text-field>
+
+            <!-- Vuetify Data Table -->
+            <v-data-table
+              :headers="headers"
+              :items="packs"
+              :search="search"
+              item-key="id"
+              :items-per-page="itemsPerPage"
+              :footer-props="{
+                'items-per-page-options': [5, 10, 15],
+                'items-per-page': itemsPerPage,
+              }"
+              class="elevation-0 rounded-xl"
+            >
+              <template v-slot:item.icon="{ item }">
+                <v-icon :color="item.color" size="32">{{ item.icon }}</v-icon>
+              </template>
+
+              <template v-slot:item.actions="{ item }">
                 <v-btn
+                  @click="goToPackDetails(item)"
                   color="primary"
-                  block
-                  @click="
-                    $router.push({
-                      name: 'tontine-details',
-                      params: { id: '1' },
-                    })
-                  "
+                  small
+                  rounded
                 >
-                  Consulter
+                  Détails
                 </v-btn>
-              </v-card-actions> -->
-          </v-card>
-        </v-col>
-        <!-- Carte 2 : Machines de production agroalimentaire -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" outlined>
-            <v-card-title>
-              <v-icon size="48" color="orange">mdi-factory</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em"
-              >Production Agroalimentaire</v-card-text
-            >
-            <v-card-subtitle>
-              Explorez nos solutions pour la transformation et la production
-              agroalimentaire.
-            </v-card-subtitle>
-          </v-card>
-        </v-col>
-        <!-- Carte 3 : Machines pour jus de fruits -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" outlined>
-            <v-card-title>
-              <v-icon size="48" color="red">mdi-fruit-grapes</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em"
-              >Machines pour Jus de Fruits</v-card-text
-            >
-            <v-card-subtitle>
-              Produisez des jus frais et délicieux grâce à nos équipements
-              spécialisés.
-            </v-card-subtitle>
-          </v-card>
-        </v-col>
-        <!-- Carte 4 : Tontine pour l'immobilier -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" outlined>
-            <v-card-title>
-              <v-icon size="48" color="blue">mdi-home-city</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em">Immobilier</v-card-text>
-            <v-card-subtitle>
-              Participez à une tontine pour financer vos projets immobiliers :
-              achat, construction ou rénovation.
-            </v-card-subtitle>
-          </v-card>
-        </v-col>
-        <!-- Carte 5 : Tontine pour l'éducation -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" outlined>
-            <v-card-title>
-              <v-icon size="48" color="purple">mdi-school</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em">Éducation</v-card-text>
-            <v-card-subtitle>
-              Facilitez l'accès à une éducation de qualité pour vos enfants
-              grâce à une tontine éducative.
-            </v-card-subtitle>
-          </v-card>
-        </v-col>
-        <!-- Carte 6 : Tontine pour le transport -->
-        <v-col cols="6" md="4" class="mb-5">
-          <v-card class="py-2" style="height: 11em" outlined>
-            <v-card-title>
-              <v-icon size="48" color="brown">mdi-bus</v-icon>
-            </v-card-title>
-            <v-card-text style="font-size: 1em">Transport</v-card-text>
-            <v-card-subtitle>
-              Investissez dans des moyens de transport avec des plans de tontine
-              adaptés à vos besoins.
-            </v-card-subtitle>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </Navigation>
+              </template>
+            </v-data-table>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row></Navigation
+  >
 </template>
+
 <script setup>
-/* eslint-disable */
-import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
 import Navigation from "@/components/Navigation.vue";
 
-const drawer = ref(false);
+// Router for navigation
 const router = useRouter();
 
-// const onPowerButtonClick = () => {
-//   authStore.resetStore();
-//   router.replace("/auth/login");
-// };
+// Data state for packs and search
+const search = ref("");
+const packs = ref([]);
+const itemsPerPage = ref(10);
 
-const currentPageTitle = ref("Dashboard");
-
-const hasGoBackIcon = ref(false);
-
-// $on("new-page-constants", (payload: any) => {
-//   console.log(payload);
-//   currentPageTitle.value = payload.currentPageTitle;
-//   hasGoBackIcon.value = payload.hasGoBackIcon;
-// });
-
-const logolify = (value) => {
-  return value
-    ? value
-        .toUpperCase()
-        .split(" ")
-        .map((w) => w[0])
-        .join("")
-        .slice(0, 2)
-    : "";
-};
-
-const NAVIGATION_DRAWER_ROUTES = [
+// Statistics data with additional styling
+const stats = ref([
   {
-    title: "Tableau de bord",
-    path: "/user/home",
-    icon: "mdi-home",
+    title: "Solde du portefeuille",
+    icon: "mdi-wallet",
+    iconColor: "indigo",
+    value: "5 000 000 FCFA",
+    description: "Le solde total disponible dans votre portefeuille.",
+    textColor: "indigo",
+    image: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
   },
+  {
+    title: "Packs Actifs",
+    icon: "mdi-package",
+    iconColor: "green",
+    value: "3",
+    description: "Nombre de packs de tontine actifs.",
+    textColor: "green",
+    image: "https://cdn.vuetifyjs.com/images/cards/forest.jpg",
+  },
+  {
+    title: "Membres",
+    icon: "mdi-account-group",
+    iconColor: "orange",
+    value: "25",
+    description: "Nombre total de membres dans vos tontines.",
+    textColor: "orange",
+    image: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
+  },
+]);
 
-  // {
-  //   title: "Chaines",
-  //   path: "/chains",
-  //   icon: "mdi-list-box",
-  // },
-
-  // {
-  //   title: "Technologies",
-  //   path: "/technologies",
-  //   icon: "mdi-group",
-  // },
-  // {
-  //   title: "Lien entre Technologies",
-  //   path: "/technologies-links",
-  //   icon: "mdi-group",
-  // },
-  // {
-  //   title: "Fichiers",
-  //   path: "/files",
-  //   icon: "mdi-file-pdf-box",
-  // },
-  // {
-  //   title: "Candidats",
-  //   path: "/applicants",
-  //   icon: "mdi-account",
-  // },
-  // {
-  //   title: "Collaborateurs",
-  //   path: "/collaborators",
-  //   icon: "mdi-account-group",
-  // },
-
-  // {
-  //   title: "Paramètres",
-  //   path: "/settings",
-  //   icon: "mdi-view-dashboard",
-  // },
-  // {
-  //   title: "Déconnexion",
-  //   path: "/settings",
-  //   icon: "mdi-view-dashboard",
-  // },
+// Table headers
+const headers = [
+  { text: "Titre", align: "start", key: "title", sortable: true },
+  { text: "Description", align: "start", key: "subtitle", sortable: false },
+  { text: "Icône", align: "center", key: "icon", sortable: false },
+  { text: "Actions", align: "center", key: "actions", sortable: false },
 ];
+
+// Fetch data from API on mount
+onMounted(async () => {
+  try {
+    const response = await axios.get("/api/packs"); // Change with your actual API endpoint
+    packs.value = response.data; // Assuming the API returns an array of packs
+  } catch (error) {
+    console.error("Failed to fetch packs:", error);
+  }
+});
+
+// Go to pack details page
+const goToPackDetails = (pack) => {
+  router.push({ name: "PackDetails", params: { packId: pack.id } });
+};
 </script>
 
 <style scoped>
-/* .v-icon {
+/* Styling for the page */
+.v-card {
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.v-btn {
+  font-weight: bold;
+}
+
+.v-text-field {
+  width: 100%;
+}
+
+.v-data-table {
+  margin-top: 20px;
+}
+
+.v-icon {
+  font-size: 24px;
+}
+
+.v-avatar {
+  border-radius: 50%;
+}
+
+.v-row {
+  margin-top: 30px;
+}
+
+.v-col {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
-} */
-/* h2 {
-  font-family: "Roboto", sans-serif;
-  color: #333;
-} */
+}
 </style>
