@@ -9,9 +9,6 @@
     <script src="js-sdk.min.js"></script>
     <script src="/public/vconsole.min.js"></script>
     <script src="/public/jquery.js"></script>
-
-    
-    
   </head>
   <body>
     <noscript>
@@ -35,60 +32,64 @@
   // Fonction pour effectuer le processus de login
   function login() {
     // Appel de l'API native pour obtenir le token superapp
-    window.ma.callNativeAPI("gethwssostring", { merchantAppId: "xxxxx" }, (res) => {
-      console.log("superapptoken res:", res);
-      console.log("superapptoken:", res.xm_string_callback_key);
-      
-      // Récupération du superapptoken
-      var superapptoken = res.xm_string_callback_key;
-      
-      // Première requête AJAX pour obtenir le miniservertoken
-      $.ajax({
-        url: "https://pub-za.appcubecloud.com/service/TontiisCash__Tontine/1.0.0/baas/auth/v1.0/oauth2/token", // URL du backend pour obtenir le token du serveur
-        method: "POST",
-        async: true,
-        data: {
-          client_id: "32d122dd8e1601ebc8d1d42eac540d6f", // Remplacer par le client_id réel
-          client_secret: "213589c11d6a91ac508b83683c0e69ac72550f2653c782f9", // Remplacer par le client_secret réel
-          grant_type: "client_credentials", // Type de grant
-        },
-        success: function (response) {
-          console.log("miniservertoken:", response.access_token);
-          console.log(response)
-          // Récupération du miniservertoken
-          var miniservertoken = response.access_token;
-          localStorage.setItem('miniservertoken')
-          console.log(miniservertoken)
-          // Deuxième requête AJAX pour obtenir le miniusertoken en utilisant le miniservertoken
-          $.ajax({
-            url: "https://pub-za.appcubecloud.com/service/TontiisCash__Tontine/1.0.0", // URL du backend pour obtenir le token utilisateur
-            method: "POST",
-            async: true,
-            headers: {
-              "Content-Type": "application/json",
-              "access-token": miniservertoken, // Utilisation du miniservertoken dans l'en-tête
-            },
-            data: JSON.stringify({
-              authCode: superapptoken, // Utilisation du superapptoken pour l'authentification
-            }),
-            success: function (response) {
-              console.log("miniusertoken:", response.result["access-token"]);
-              
-              // Récupération du miniusertoken
-              window.accesstoken = response.result["access-token"];
-            },
-            error: function (xhr, status, error) {
-              console.log("Erreur lors de la création du miniusertoken", error);
-            },
-          });
-        },
-        error: function (xhr, status, error) {
-          console.log("Erreur lors de la création du miniservertoken", error);
-        },
+    window.ma
+      .callNativeAPI("gethwssostring", { merchantAppId: "xxxxx" }, (res) => {
+        console.log("superapptoken res:", res);
+        console.log("superapptoken:", res.xm_string_callback_key);
+
+        // Récupération du superapptoken
+        var superapptoken = res.xm_string_callback_key;
+
+        // Première requête AJAX pour obtenir le miniservertoken
+        $.ajax({
+          url: "https://pub-za.appcubecloud.com/service/TontiisCash__Tontine/1.0.0/baas/auth/v1.0/oauth2/token", // URL du backend pour obtenir le token du serveur
+          method: "POST",
+          async: true,
+          data: {
+            client_id: "32d122dd8e1601ebc8d1d42eac540d6f", // Remplacer par le client_id réel
+            client_secret: "213589c11d6a91ac508b83683c0e69ac72550f2653c782f9", // Remplacer par le client_secret réel
+            grant_type: "client_credentials", // Type de grant
+          },
+          success: function (response) {
+            console.log("miniservertoken:", response.access_token);
+            console.log(response);
+            // Récupération du miniservertoken
+            var miniservertoken = response.access_token;
+            localStorage.setItem("miniservertoken");
+            console.log(miniservertoken);
+            // Deuxième requête AJAX pour obtenir le miniusertoken en utilisant le miniservertoken
+            $.ajax({
+              url: "https://pub-za.appcubecloud.com/service/TontiisCash__Tontine/1.0.0", // URL du backend pour obtenir le token utilisateur
+              method: "POST",
+              async: true,
+              headers: {
+                "Content-Type": "application/json",
+                "access-token": miniservertoken, // Utilisation du miniservertoken dans l'en-tête
+              },
+              data: JSON.stringify({
+                authCode: superapptoken, // Utilisation du superapptoken pour l'authentification
+              }),
+              success: function (response) {
+                console.log("miniusertoken:", response.result["access-token"]);
+
+                // Récupération du miniusertoken
+                window.accesstoken = response.result["access-token"];
+              },
+              error: function (xhr, status, error) {
+                console.log(
+                  "Erreur lors de la création du miniusertoken",
+                  error
+                );
+              },
+            });
+          },
+          error: function (xhr, status, error) {
+            console.log("Erreur lors de la création du miniservertoken", error);
+          },
+        });
+      })
+      .catch((e) => {
+        console.log("Erreur lors de la création du superapptoken", e);
       });
-    })
-    .catch((e) => {
-      console.log("Erreur lors de la création du superapptoken", e);
-    });
   }
 </script>

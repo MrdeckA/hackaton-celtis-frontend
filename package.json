@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "axios": "^1.7.9",
+    "chart.js": "^4.4.7",
     "hello-world2": "file:",
     "json-server": "^1.0.0-beta.3",
     "node-localstorage": "^3.0.5",

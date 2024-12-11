@@ -38,11 +38,11 @@ const tontines = ref([]);
 
 const loading = ref(false);
 
-const fetcher = await api();
+// const fetcher = await api();
 
-fetcher.get("/tontines").then((response) => {
-  console.log(response.data);
-});
+// fetcher.get("/tontines").then((response) => {
+//   console.log(response.data);
+// });
 </script>
 
 <style scoped>

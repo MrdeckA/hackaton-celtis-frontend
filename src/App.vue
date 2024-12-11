@@ -14,17 +14,17 @@ const authStore = useAuthStore();
 
 const { authenticatedUser, authenticationToken } = storeToRefs(authStore);
 
-router.afterEach(() => {
-  api
-    .get("/users/1")
-    .then((response) => {
-      console.log(response.data);
-      authStore.updateAuthenticatedUser(response.data);
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la récupération des plans:", error);
-    });
-});
+// router.afterEach(() => {
+//   api
+//     .get("/users/1")
+//     .then((response) => {
+//       console.log(response.data);
+//       authStore.updateAuthenticatedUser(response.data);
+//     })
+//     .catch((error) => {
+//       console.error("Erreur lors de la récupération des plans:", error);
+//     });
+// });
 </script>
 
 <style>
@@ -42,7 +42,7 @@ body {
   width: 100%;
   margin: 0;
   /* background-color: #f2f2f2; */
-  background-color: whitesmoke;
+  background-color: #92c01f09;
 }
 
 nav {
