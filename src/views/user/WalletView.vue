@@ -12,7 +12,7 @@
     <v-container fluid class="">
       <v-card
         outlined
-        class="elevation-2 rounded-xl pa-4 text-center gradient-bg"
+        class="elevation-2 rounded-xl pa-4 text-center bg-primary gradient-bg"
       >
         <v-icon size="48" class="mb-2" color="white">mdi-wallet</v-icon>
         <h2 class="text-h4 font-weight-bold mb-2 text-white">1 200 000 FCFA</h2>
@@ -26,7 +26,7 @@
         <v-col cols="6" class="pa-2">
           <v-card
             outlined
-            class="elevation-2 rounded-xl pa-3 text-center hover-card"
+            class="elevation-2 rounded-xl pa-3 text-center bg-primary hover-card"
           >
             <v-icon size="32" color="green"
               >mdi-arrow-down-circle-outline</v-icon
@@ -52,7 +52,7 @@
 
     <!-- Liste des Transactions -->
     <v-container class="mt-l">
-      <v-card outlined class="rounded-xl elevation-1">
+      <v-card outlined class="rounded-xl elevation-1 text-left">
         <v-card-title>
           <h3 class="text-h6 font-weight-bold">Transactions Récentes</h3>
         </v-card-title>
@@ -130,7 +130,6 @@ const transactions = ref([
 <style scoped>
 /* Gradient background for the balance card */
 .gradient-bg {
-  background: linear-gradient(45deg, #2196f3, #21cbf3);
   color: white;
   border-radius: 20px;
 }

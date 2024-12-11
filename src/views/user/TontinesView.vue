@@ -36,15 +36,15 @@
       </v-btn>
 
       <v-row no-gutters v-if="tontines.length">
-        <v-col cols="12" class="my-1" v-for="n in 3" :key="n"
+        <v-col cols="12" class="my-1" v-for="(item, n) in tontines" :key="n"
           ><v-list-item
-            to="/user/tontines/1"
+            :to="'/user/tontines/' + item.id"
             rounded
             color="primary"
             v-ripple
-            :title="'Item ' + n"
-            subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit"
-            prepend-icon="mdi-home"
+            :prepend-icon="item.icon"
+            :title="item.title"
+            :subtitle="item.description"
             class="text-left py-4 bg-white"
             elevation="1"
           >
@@ -61,9 +61,6 @@
           <p class="text-body-1 text-secondary mt-2">
             Vous ne participez à aucune tontine pour l'instant.
           </p>
-          <v-btn color="primary" block class="mt-2" rounded>
-            Rejoindre une tontine
-          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -105,6 +102,51 @@ const tontines = ref([
     members: 12,
     frequency: "Mensuel",
     balance: 3200,
+    amountRange: {
+      min: 5000,
+      max: 50000,
+    },
+    duration: "6 mois",
+    paymentFrequency: "Mensuelle",
+    participants: {
+      current: 12,
+      max: 30,
+    },
+    payoutCycle: "Mensuel",
+    features: [
+      "Investir dans des équipements agricoles modernes",
+      "Accompagnement des exploitants agricoles locaux",
+      "Possibilité de cotisations flexibles",
+    ],
+    status: "active",
+  },
+  {
+    id: "1",
+    title: "Tontine Communautaire",
+    icon: "mdi-account-group",
+    color: "#2196F3",
+    description:
+      "Unissez vos forces pour financer des projets communautaires comme des écoles, centres de santé, ou autres initiatives locales.",
+    members: 15,
+    frequency: "Mensuelle",
+    balance: 5000,
+    amountRange: {
+      min: 10000,
+      max: 200000,
+    },
+    duration: "6 à 12 mois",
+    paymentFrequency: "Mensuelle",
+    participants: {
+      current: 15,
+      max: 50,
+    },
+    payoutCycle: "Mensuel",
+    features: [
+      "Gestion transparente avec accès partagé aux rapports",
+      "Possibilité de définir des objectifs collectifs",
+      "Caisse commune pour des urgences ou des projets solidaires",
+    ],
+    status: "active",
   },
   {
     id: 2,
@@ -115,6 +157,23 @@ const tontines = ref([
     members: 8,
     frequency: "Trimestriel",
     balance: 1500,
+    amountRange: {
+      min: 5000,
+      max: 20000,
+    },
+    duration: "6 mois",
+    paymentFrequency: "Trimestrielle",
+    participants: {
+      current: 8,
+      max: 20,
+    },
+    payoutCycle: "Trimestriel",
+    features: [
+      "Couvrir les frais de scolarité des enfants",
+      "Soutenir des bourses d'études",
+      "Financer des infrastructures scolaires",
+    ],
+    status: "active",
   },
   {
     id: 3,
@@ -125,8 +184,24 @@ const tontines = ref([
     members: 15,
     frequency: "Mensuel",
     balance: 4500,
+    amountRange: {
+      min: 10000,
+      max: 150000,
+    },
+    duration: "6 mois",
+    paymentFrequency: "Mensuelle",
+    participants: {
+      current: 15,
+      max: 30,
+    },
+    payoutCycle: "Mensuel",
+    features: [
+      "Achat d'un véhicule en commun",
+      "Caisse pour les frais d'entretien et de réparation",
+      "Assurance partagée",
+    ],
+    status: "active",
   },
-  // Ajoutez d'autres tontines si nécessaire
 ]);
 </script>
 
